@@ -1,7 +1,7 @@
 import React from "react";
 
-function testList() {
+function TestList() {
   return <h2>Hello World! testList!</h2>;
 }
 
-export default testList;
+export default TestList;
