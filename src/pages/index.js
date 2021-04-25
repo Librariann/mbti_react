@@ -1,2 +1,3 @@
-export { default as TestList } from "./TestList";
-export { default as TestStart } from "./TestStart";
+export { default as TestReady } from "./TestReady";
+export { default as TestProcess } from "./TestProcess";
+export { default as TestResult } from "./TestResult";

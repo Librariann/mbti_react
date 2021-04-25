@@ -1,11 +1,13 @@
 //TESTPAGE
 
-const testList = "/"; //HOME
-const testStart = "/start/:id"; //START
+const testReady = "/"; //HOME
+const testProcess = "/process"; //PROCESS
+const testResult = "/result"; //result
 
 const routes = {
-  TESTLIST: testList,
-  TESTSTART: testStart,
+  TESTREADY: testReady,
+  TESTPROCESS: testProcess,
+  TESTRESULT: testResult,
 };
 
 export default routes;

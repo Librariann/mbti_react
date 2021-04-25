@@ -1,32 +1,43 @@
-import React, { Component } from "react";
+import React from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Routes from "./Routes";
-import { TestList, TestStart } from "./pages";
+import { TestReady, TestProcess, TestResult } from "./pages";
+import axios from "axios";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./css/style.css";
 
 class App extends React.Component {
-  state = {};
+  state = {
+    isLoading: true,
+    data: [],
+  };
+  mbti = async () => {
+    const { data } = await axios.get("/api/index.php");
+    this.setState({ data, isLoading: false });
+  };
 
-  componentDidMount() {}
+  componentDidMount() {
+    this.mbti();
+  }
 
   render() {
+    const { isLoading } = this.state;
     return (
-      <Router>
-        <div>
-          <nav>
-            <ul>
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>
-                <Link to="/start/123">Start</Link>
-              </li>
-            </ul>
-          </nav>
-
-          <Route exact path={Routes.TESTLIST} component={TestList} />
-          <Route path={Routes.TESTSTART} component={TestStart} />
-        </div>
-      </Router>
+      <section>
+        {isLoading ? (
+          <div className="loading">
+            <span className="spinner"></span>
+          </div>
+        ) : (
+          <Router>
+            <div>
+              <Route exact path={Routes.TESTREADY} component={TestReady} />
+              <Route path={Routes.TESTPROCESS} component={TestProcess} />
+              <Route path={Routes.TESTRESULT} component={TestResult} />
+            </div>
+          </Router>
+        )}
+      </section>
     );
   }
 }
