@@ -1,8 +1,7 @@
 //TESTPAGE
-
 const testReady = "/"; //HOME
 const testProcess = "/process"; //PROCESS
-const testResult = "/result"; //result
+const testResult = "/result"; //RESULT
 
 const routes = {
   TESTREADY: testReady,
