@@ -1,0 +1,19 @@
+{
+  // 컴파일러 옵션
+  "compilerOptions": {
+    "target": "es2016",
+    "module": "commonjs",
+    "jsx": "preserve",
+    "esModuleInterop": true
+
+    // ... 옵션들
+  },
+
+  // 컴파일 과정에서 포함할 파일
+  "include": ["src/**/*", "tests/**/*"],
+
+  // 빌드 제외 항목을 기입
+  "exclude": ["node_modules", "**/*.(spec|test).ts"]
+
+  // 다른 타입스크립트 설정의 내용을 가져와 덮어씀
+}

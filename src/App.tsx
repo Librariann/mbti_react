@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Routes from "./Routes";
-import { TestReady, TestProcess, TestResult } from "./pages";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./css/style.css";
+import { TestProcess } from "./pages/TestProcess";
+import { TestResult } from "./pages/TestResult";
+import { TestReady } from "./pages/TestReady";
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -21,7 +23,7 @@ const App = () => {
   });
 
   return (
-    <section>
+    <div>
       {loading ? (
         <div className="loading">
           <span className="spinner"></span>
@@ -35,7 +37,7 @@ const App = () => {
           </div>
         </Router>
       )}
-    </section>
+    </div>
   );
 };
 

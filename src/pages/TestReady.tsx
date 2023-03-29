@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 
-export const testReady = () => {
+export const TestReady = () => {
   return (
     <div className="backgroun-images">
       <div className="container mt-5">
