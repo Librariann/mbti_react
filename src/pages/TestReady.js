@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 
-function TestReady() {
+export const testReady = () => {
   return (
     <div className="backgroun-images">
       <div className="container mt-5">
@@ -18,6 +18,4 @@ function TestReady() {
       </div>
     </div>
   );
-}
-
-export default TestReady;
+};
