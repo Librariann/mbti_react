@@ -3,9 +3,15 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { Button, ProgressBar } from "react-bootstrap";
 
+interface IData {
+  title: string;
+  question1: string;
+  question2: string;
+}
+
 export const TestProcess = () => {
   const [progress, setProgress] = useState(0);
-  const [data, setData] = useState("");
+  const [data, setData] = useState<IData>();
   const [paramsId, setParamsId] = useState(1);
   const [result, setResult] = useState(false);
   const [elements, setElements] = useState("");
@@ -38,10 +44,6 @@ export const TestProcess = () => {
     setElements(dataJson.elements);
     setParamsId(paramsId + 1);
     setResult(result);
-    setEi();
-    setSn();
-    setTf();
-    setJp();
   };
 
   const mbtiDown = async () => {
@@ -68,7 +70,7 @@ export const TestProcess = () => {
     <article className="question container">
       <ProgressBar animated now={progress} />
       <h2 id="title" className="text-center mt-5">
-        {data.title}
+        {data?.title}
       </h2>
       {result ? (
         <>
@@ -80,13 +82,13 @@ export const TestProcess = () => {
                   ei,
                   sn,
                   tf,
-                  jp: parseInt(jp + 1),
+                  jp: jp + 1,
                 },
               },
             }}
           >
             <Button className="prcbtn" variant="primary mt-5">
-              {data.question1}
+              {data?.question1}
             </Button>
           </Link>
           <Link
@@ -103,17 +105,17 @@ export const TestProcess = () => {
             }}
           >
             <Button className="prcbtn" variant="primary mt-5">
-              {data.question2}
+              {data?.question2}
             </Button>
           </Link>
         </>
       ) : (
         <>
           <Button variant="primary mt-5" onClick={mbtiUp}>
-            {data.question1}
+            {data?.question1}
           </Button>
           <Button variant="primary mt-5" onClick={mbtiDown}>
-            {data.question2}
+            {data?.question2}
           </Button>
         </>
       )}

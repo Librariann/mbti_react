@@ -1,18 +1,24 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-export const TestResult = () => {
+interface IData {
+  result: string;
+  title: string;
+  explains: string;
+  explains2: string;
+}
+
+export const TestResult = (props: any) => {
   const [ei, setEi] = useState("");
   const [sn, setSn] = useState("");
   const [tf, setTf] = useState("");
   const [jp, setJp] = useState("");
   const [result, setResult] = useState("");
-  const [data, setData] = useState("");
+  const [data, setData] = useState<IData>();
 
   const mbti = async () => {
-    const mbti = this.props.location.state.mbti;
-    let { EI, SN, TF, JP } = this.state;
-    console.log(mbti);
+    const location = props.location.state.mbti;
+    const mbti = location.state.mbti;
 
     if (mbti.EI > 1) {
       setEi("E");
@@ -35,14 +41,8 @@ export const TestResult = () => {
       setJp("P");
     }
 
-    let RESULT = EI + SN + TF + JP;
+    let RESULT = ei + sn + tf + jp;
     const { data } = await axios.get(`/api/result.php?result=${RESULT}`);
-
-    console.log(data[0]);
-    setEi();
-    setSn();
-    setTf();
-    setJp();
     setResult(RESULT);
     setData(data[0]);
   };
@@ -50,7 +50,8 @@ export const TestResult = () => {
   useEffect(() => {
     mbti();
   });
-  let imgPath = `img/${data.result}.jpg`;
+
+  let imgPath = `img/${data?.result}.jpg`;
   return (
     <section className="container">
       <img
@@ -60,10 +61,10 @@ export const TestResult = () => {
         alt="heroImage"
       />
       <div className="text-center mt-5">
-        당신의 히어로 메이트는 <h2>{data.title}</h2>
+        당신의 히어로 메이트는 <h2>{data?.title}</h2>
       </div>
-      <div className="text-center mt-5">{data.explains2}</div>
-      <div className="text-center mt-5">{data.explains}</div>
+      <div className="text-center mt-5">{data?.explains2}</div>
+      <div className="text-center mt-5">{data?.explains}</div>
     </section>
   );
 };
